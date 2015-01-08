@@ -15,6 +15,7 @@
 #include "crc-16.h"
 
 /** Definitions for Novena EIM interface */
+#ifdef NOVENA
 #define CS_PIN    GPIO_IS_EIM | 3
 #define MISO_PIN  GPIO_IS_EIM | 0
 #define CLK_PIN   GPIO_IS_EIM | 4
@@ -22,7 +23,17 @@
 #define DAT1_PIN  GPIO_IS_EIM | 1
 #define DAT2_PIN  GPIO_IS_EIM | 2
 #define POWER_PIN 17 //GPIO1_IO17
-
+#endif
+#ifdef ODROIDXU3
+#define GPC2(x) (56 + (x))
+#define CS_PIN GPC2(6) // DAT3
+#define CLK_PIN GPC2(0)
+#define MISO_PIN GPC2(1) // CMD
+#define MOSI_PIN GPC2(3) // DAT0
+#define DAT1_PIN GPC2(4)
+#define DAT2_PIN GPC2(5)
+#define POWER_PIN (-1) /* Have to go though regulator */
+#endif
 
 // R1 Response Codes (from SD Card Product Manual v1.9 section 5.2.3.1)
 #define R1_IN_IDLE_STATE    (1<<0)  // The card is in idle state and running initializing process.
@@ -244,9 +255,11 @@ int main(int argc, char **argv) {
     if (!state)
         return 1;
 
+#ifdef NOVENA
     printf("FPGA hardware v%d.%d\n",
             eim_get(fpga_r_ddr3_v_major),
             eim_get(fpga_r_ddr3_v_minor));
+#endif
 
     while ((ch = getopt(argc, argv, "vfchs:r:x:d:")) != -1) {
         switch(ch) {

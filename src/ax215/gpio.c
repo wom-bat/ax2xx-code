@@ -8,6 +8,7 @@
 #include <sys/stat.h>
 #include <sys/mman.h>
 #include <stdint.h>
+#include "eim.h"
 
 #include "gpio.h"
 

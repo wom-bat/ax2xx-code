@@ -74,8 +74,12 @@ enum eim_type {
 };
 
 #define eim_nand_adr_bits 0x3fff
-
+#ifdef NOVENA
 uint16_t eim_get(enum eim_type type);
 uint16_t eim_set(enum eim_type type, uint16_t value);
+#else
+  static inline uint16_t eim_get(int t) { return 0; }
+  static inline uint16_t eim_set(int t, uint16_t v) { return 0;}
+#endif
 
 #endif // __eim_h__

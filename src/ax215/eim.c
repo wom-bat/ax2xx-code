@@ -1,3 +1,4 @@
+#ifdef NOVENA
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
@@ -299,4 +300,4 @@ int eim_get_value(int gpio) {
 	gpio &= ~GPIO_IS_EIM;
 	return (mem >> gpio)&1;
 }
-
+#endif
