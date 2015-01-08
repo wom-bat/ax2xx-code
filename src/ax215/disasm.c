@@ -446,7 +446,7 @@ static int dis_inst1(uint8_t *bfr, int size, int addr)
 			break;
 	}
 	
-	return addr;
+	return newaddr;
 }
 
 /* pass1: Disassemble instructions starting at given entry point (pass 1)

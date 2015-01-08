@@ -3316,7 +3316,7 @@ int makeop(struct opcode * op, struct mode *m, int add)
 #define getloc(a) (regions[indx(a)] & bit(a))
 #define setloc(a) (regions[indx(a)] |= bit(a))
 
-static unsigned long regions[ 0x10000/(sizeof(long)*8) ];
+static unsigned long regions[0x10000UL / (sizeof(long)*8)];
 
 void inclc(int i)
 {
@@ -3328,13 +3328,13 @@ void inclc(int i)
 		lc += 1;
 	}
 		
-	if( lc > 0xffff )
+	if( lc > 0xffffUL )
 		error("Location counter has exceeded 16-bits");
 }
 
 void clear_location_counter(void)
 {
-	memset(regions, 0, sizeof(regions));
+	memset(regions, 0, sizeof regions);
 }
 
 
