@@ -38,6 +38,18 @@
 #define DAT2_PIN GPC2(5)
 #define POWER_PIN (-1) /* Have to go though regulator */
 #endif
+#ifdef SABRELITE
+#define GPIO7(x) (192 + (x))
+#define CS_PIN GPIO7(7)
+#define CLK_PIN GPIO7(3)
+#define MOSI_PIN GPIO7(2)
+#define MISO_PIN GPIO7(4)
+#define DAT1_PIN GPIO7(5)
+#define DAT2_PIN GPIO7(6)
+#define POWER_PIN (-1)
+#endif
+
+
 
 // R1 Response Codes (from SD Card Product Manual v1.9 section 5.2.3.1)
 #define R1_IN_IDLE_STATE    (1<<0)  // The card is in idle state and running initializing process.

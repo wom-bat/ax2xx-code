@@ -28,11 +28,21 @@
 #define GPC2(x) (56 + (x))
 #define CS_PIN GPC2(6) // DAT3
 #define CLK_PIN GPC2(0)
-#define MISO_PIN GPC2(1) // CMD
-#define MOSI_PIN GPC2(3) // DAT0
+#define MISO_PIN GPC2(1) // DAT0
+#define MOSI_PIN GPC2(3) // CMD
 #define DAT1_PIN GPC2(4)
 #define DAT2_PIN GPC2(5)
 #define POWER_PIN (-1) /* Have to go though regulator */
+#endif
+#ifdef SABRELITE
+#define GPIO7(x) (6*32 + (x))
+#define CS_PIN GPIO7(7) // DAT3
+#define CLK_PIN GPIO7(3)
+#define MOSI_PIN GPIO7(2) // CMD
+#define MISO_PIN GPIO7(4) // DAT0
+#define DAT1_PIN GPIO7(5)
+#define DAT2_PIN GPIO7(6)
+#define POWER_PIN (-1)
 #endif
 
 // R1 Response Codes (from SD Card Product Manual v1.9 section 5.2.3.1)
